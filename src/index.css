@@ -58,6 +58,11 @@ button:focus-visible {
   width: 500px;
 }
 
+.logo {
+  width: 90px;
+  height: auto;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
