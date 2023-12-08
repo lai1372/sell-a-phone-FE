@@ -29,7 +29,6 @@ export default function AllMobiles() {
           <p>£{mobile.price}</p>
         </div>
       ))}
-      <h1>Hello</h1>
     </>
   );
 }
