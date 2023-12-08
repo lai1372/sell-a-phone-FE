@@ -27,6 +27,9 @@ function App() {
           <li>
             <NavLink to="/mobiles/add-mobile">Add a Mobile</NavLink>
           </li>
+          <li>
+            <NavLink to="/mobiles/update-mobile">Update a Mobile</NavLink>
+          </li>
         </ul>
       </nav>
       <Routes>

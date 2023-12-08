@@ -12,6 +12,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+ul {
+  list-style-type: none;
+}
 
 a {
   font-weight: 500;
@@ -64,13 +67,16 @@ button:focus-visible {
 }
 
 .mobile-container {
-  border: 10px solid red;
+  border: 5px solid rgb(250, 198, 198);
   border-radius: 20px;
   margin: 10px;
 }
 
 .active {
-  color: red;
+  background-color: rgb(234, 113, 113);
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
 }
 
 /* Style inputs */

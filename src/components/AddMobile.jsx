@@ -31,6 +31,8 @@ export default function AddMobile() {
     setMemory("");
     setPrice("");
     setColours("");
+    setDetails("");
+    setImage("");
   }
 
   return (
