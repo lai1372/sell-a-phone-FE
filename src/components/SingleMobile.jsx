@@ -10,14 +10,30 @@ export default function SingleMobile() {
     const data = await response.json();
     setMobile(data);
   }
+
+  async function handleDelete() {
+    const response = await fetch(`http://localhost:8080/mobiles/${id}`, {
+      method: "DELETE",
+    });
+    const data = response.json();
+  }
+
   useEffect(() => {
     getMobile();
   }, []);
 
   return (
     <>
-      <h1>Mobile number {id}</h1>
-      <p>{mobile.name}</p>
+      <h1>Details for {mobile.name}</h1>
+      <div>
+        <img className="list-image" src={mobile.image} />
+        <p>Brand: {mobile.brand}</p>
+        <p>Price: £{mobile.price}</p>
+        <p>Memory: {mobile.memory}GB</p>
+        <p>Details: {mobile.details}</p>
+        <p>Colours: {mobile.colours}</p>
+      </div>
+      <button onClick={handleDelete}>Delete item</button>
     </>
   );
 }

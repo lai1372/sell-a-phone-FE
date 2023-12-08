@@ -1,9 +1,11 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function AllMobiles() {
   const [mobiles, setMobiles] = useState([]);
+  const navigate = useNavigate();
 
   async function fetchMobiles() {
     try {
@@ -16,13 +18,23 @@ export default function AllMobiles() {
     }
   }
 
+  function handleClick(mobile) {
+    navigate(`/mobiles/${mobile.id}`);
+  }
+
   useEffect(() => {
     fetchMobiles();
   }, []);
   return (
     <>
       {mobiles.map((mobile, i) => (
-        <div className="mobile-container" key={i}>
+        <div
+          className="mobile-container"
+          key={i}
+          onClick={() => {
+            handleClick(mobile);
+          }}
+        >
           <img className="list-image" src={mobile.image} />
           <p>{mobile.name}</p>
           <p>{mobile.brand}</p>
