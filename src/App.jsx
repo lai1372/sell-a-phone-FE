@@ -23,16 +23,17 @@ function App() {
             <Link to="/mobiles">All Mobiles</Link>
           </li>
           <li>
-            <Link to="add-mobile">Add a Mobile</Link>
+            <Link to="/mobiles/add-mobile">Add a Mobile</Link>
           </li>
         </ul>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/mobiles" element={<AllMobiles />} />
-        <Route path="/add-mobile" element={<AddMobile />} />
-        <Route path="/update-mobile" element={<UpdateMobile />} />
-        <Route path="/mobiles/:id" element={<SingleMobile />} />
+        <Route path="/mobiles">
+          <Route path=":id" element={<SingleMobile />} />
+          <Route path="add-mobile" element={<AddMobile />} />
+          <Route path="update-mobile" element={<UpdateMobile />} />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
