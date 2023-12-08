@@ -30,6 +30,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mobiles">
+          <Route index element={<SingleMobile />} />
           <Route path=":id" element={<SingleMobile />} />
           <Route path="add-mobile" element={<AddMobile />} />
           <Route path="update-mobile" element={<UpdateMobile />} />
