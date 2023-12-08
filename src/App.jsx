@@ -7,7 +7,7 @@ import SingleMobile from "./components/SingleMobile";
 import NotFound from "./components/NotFound";
 import Home from "./components/Home";
 import logo from "./assets/logo.png";
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes, NavLink } from "react-router-dom";
 
 function App() {
   return (
@@ -17,13 +17,15 @@ function App() {
 
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <Link to="/mobiles">All Mobiles</Link>
+            <NavLink end to="/mobiles">
+              All Mobiles
+            </NavLink>
           </li>
           <li>
-            <Link to="/mobiles/add-mobile">Add a Mobile</Link>
+            <NavLink to="/mobiles/add-mobile">Add a Mobile</NavLink>
           </li>
         </ul>
       </nav>
