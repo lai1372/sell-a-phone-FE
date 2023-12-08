@@ -4,6 +4,7 @@ import AllMobiles from "./components/AllMobiles";
 import AddMobile from "./components/AddMobile";
 import UpdateMobile from "./components/UpdateMobile";
 import SingleMobile from "./components/SingleMobile";
+import NotFound from "./components/NotFound";
 import Home from "./components/Home";
 import logo from "./assets/logo.png";
 import { Link, Route, Routes } from "react-router-dom";
@@ -32,6 +33,7 @@ function App() {
         <Route path="/add-mobile" element={<AddMobile />} />
         <Route path="/update-mobile" element={<UpdateMobile />} />
         <Route path="/mobiles/:id" element={<SingleMobile />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
