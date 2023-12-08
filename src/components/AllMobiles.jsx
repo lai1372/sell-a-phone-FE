@@ -22,9 +22,11 @@ export default function AllMobiles() {
   return (
     <>
       {mobiles.map((mobile) => (
-        <div>
-          <p>{mobile.name}</p>
+        <div className="mobile-container">
           <img className="list-image" src={mobile.image} />
+          <p>{mobile.name}</p>
+          <p>{mobile.brand}</p>
+          <p>£{mobile.price}</p>
         </div>
       ))}
       <h1>Hello</h1>
