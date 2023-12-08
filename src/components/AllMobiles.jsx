@@ -21,8 +21,8 @@ export default function AllMobiles() {
   }, []);
   return (
     <>
-      {mobiles.map((mobile) => (
-        <div className="mobile-container">
+      {mobiles.map((mobile, i) => (
+        <div className="mobile-container" key={i}>
           <img className="list-image" src={mobile.image} />
           <p>{mobile.name}</p>
           <p>{mobile.brand}</p>
