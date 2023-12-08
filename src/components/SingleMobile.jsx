@@ -24,7 +24,7 @@ export default function SingleMobile() {
 
   return (
     <>
-      <h1>Details for {mobile.name}</h1>
+      <h1>{mobile.name}</h1>
       <div>
         <img className="list-image" src={mobile.image} />
         <p>Brand: {mobile.brand}</p>
