@@ -8,11 +8,11 @@ export default function updateMobile() {
   const [price, setPrice] = useState("");
   const [details, setDetails] = useState("");
   const [image, setImage] = useState("");
-  const [colours, setColours] = useState([]);
+  const [colours, setColours] = useState("");
   const [mobiles, setMobiles] = useState({});
   const [chosenMobile, setChosenMobile] = useState({});
 
-  async function handleSubmit() {
+  async function handleSubmit(e) {
     e.preventDefault();
     try {
       await fetch(`http://localhost:8080/mobiles/${chosenMobile.id}`, {
@@ -21,14 +21,13 @@ export default function updateMobile() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: chosenMobile.id,
           name: name,
           image: image,
           brand: manufacturer,
           memory: memory,
           price: price,
           details: details,
-          colours: colours.split(),
+          colours: colours,
         }),
       });
     } catch (err) {
@@ -44,13 +43,21 @@ export default function updateMobile() {
     setDetails("");
     setImage("");
   }
-  console.log(chosenMobile.id);
 
   function handleChange(event) {
     const selectedIndex = event.target.selectedIndex;
     const selectedMobile = event.target[selectedIndex];
     const mobileId = selectedMobile.getAttribute("data-id");
     const mobileName = selectedMobile.value;
+    const { name, brand, memory, price, colours, details, image } =
+      mobiles.find(({ name }) => name === mobileName);
+    setName(name);
+    setManufacturer(brand);
+    setMemory(memory);
+    setPrice(price);
+    setColours(colours);
+    setDetails(details);
+    setImage(image);
     setChosenMobile({ id: mobileId, name: mobileName });
   }
 
