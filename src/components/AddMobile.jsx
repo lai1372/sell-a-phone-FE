@@ -7,7 +7,7 @@ export default function AddMobile() {
   const [price, setPrice] = useState("");
   const [details, setDetails] = useState("");
   const [image, setImage] = useState("");
-  const [colours, setColours] = useState([]);
+  const [colours, setColours] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -23,7 +23,7 @@ export default function AddMobile() {
         memory: memory,
         price: price,
         details: details,
-        colours: colours.split(),
+        colours: colours,
       }),
     });
     setName("");
