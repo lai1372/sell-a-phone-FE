@@ -48,6 +48,7 @@ export default function AllMobiles() {
           <div>
             {mobiles.map((mobile, idx) => (
               <div
+                className="mobile-container"
                 key={idx}
                 onClick={() => {
                   handleClick(mobile);
@@ -67,6 +68,7 @@ export default function AllMobiles() {
           <div>
             {filteredResults.map((mobile, idx) => (
               <div
+                className="mobile-container"
                 key={idx}
                 onClick={() => {
                   handleClick(mobile);
