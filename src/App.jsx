@@ -5,13 +5,13 @@ import AddMobile from "./components/AddMobile";
 import UpdateMobile from "./components/UpdateMobile";
 import SingleMobile from "./components/SingleMobile";
 import NotFound from "./components/NotFound";
-import ProtectedRoute from "./components/NavGuard";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Logout from "./components/LogOut";
 import CreateAccount from "./components/CreateAccount";
 import logo from "./assets/logo.png";
-import { Route, Routes, NavLink, redirect } from "react-router-dom";
+import { Route, Routes, NavLink, redirect, useNavigate } from "react-router-dom";
 
 function App() {
   const [authenticated, setAuthenticated] = useState({
@@ -19,8 +19,15 @@ function App() {
     isAuthenticated: false,
   });
 
-  console.log(authenticated);
+  const navigate = useNavigate()
 
+  function handleLogout() {
+    setAuthenticated({
+      user: "",
+      isAuthenticated: false,
+    });
+    navigate('/logout')
+  }
   return (
     <>
       <nav>
@@ -45,7 +52,9 @@ function App() {
             <NavLink to="/create-account">Create an account</NavLink>
           </li>
           {authenticated.isAuthenticated ? (
-            <NavLink to="/logout">Logout</NavLink>
+            <NavLink to="/logout" onClick={handleLogout}>
+              Logout
+            </NavLink>
           ) : (
             <NavLink to="/login">Login</NavLink>
           )}
