@@ -5,19 +5,23 @@ export default function CreateAccount() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [validPw, setValidPW] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [age, setAge] = useState(0);
 
   function handleChange(e) {
+    console.log(e.target.value);
     const regex =
       /^(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*()-+_=]{1,})(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*()-+_=]{6,}$/;
     if (e.target.value.match(regex)) {
       setPassword(e.target.value);
       setValidPW(true);
+      setIsDisabled(false);
     } else {
       setValidPW(false);
+      setIsDisabled(true);
     }
   }
 
@@ -64,7 +68,6 @@ export default function CreateAccount() {
         <label htmlFor="password">Password</label>
         <input
           type="text"
-          // value={password}
           id="password"
           required
           name="password"
@@ -123,7 +126,9 @@ export default function CreateAccount() {
             setAge(e.target.value);
           }}
         ></input>
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={isDisabled}>
+          Submit
+        </button>
       </form>
     </>
   );
