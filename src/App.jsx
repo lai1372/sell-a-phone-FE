@@ -6,6 +6,7 @@ import UpdateMobile from "./components/UpdateMobile";
 import SingleMobile from "./components/SingleMobile";
 import NotFound from "./components/NotFound";
 import Home from "./components/Home";
+import Login from "./components/Login";
 import CreateAccount from "./components/CreateAccount";
 import logo from "./assets/logo.png";
 import { Route, Routes, NavLink } from "react-router-dom";
@@ -39,7 +40,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/create-account" element={<CreateAccount />} />
-
+        <Route path="/login" element={<Login />} />
         <Route path="/mobiles">
           <Route index element={<AllMobiles />} />
           <Route path=":id" element={<SingleMobile />} />
