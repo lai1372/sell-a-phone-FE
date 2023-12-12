@@ -4,10 +4,22 @@ import { useState } from "react";
 export default function CreateAccount() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [validPw, setValidPW] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [age, setAge] = useState(0);
+
+  function handleChange(e) {
+    const regex =
+      /^(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*()-+_=]{1,})(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*()-+_=]{6,}$/;
+    if (e.target.value.match(regex)) {
+      setPassword(e.target.value);
+      setValidPW(true);
+    } else {
+      setValidPW(false);
+    }
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -43,6 +55,7 @@ export default function CreateAccount() {
           placeholder="e.g. PhonesAreFantastic143"
           value={username}
           id="username"
+          required
           name="username"
           onChange={(e) => {
             setUsername(e.target.value);
@@ -51,13 +64,17 @@ export default function CreateAccount() {
         <label htmlFor="password">Password</label>
         <input
           type="text"
-          value={password}
+          // value={password}
           id="password"
+          required
           name="password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
+          onChange={handleChange}
         ></input>
+        <p>
+          {validPw
+            ? ""
+            : "Your password should have a special character, number, uppercase letter and be at least 6 characters long."}
+        </p>
         <label htmlFor="firstName">First Name</label>
         <input
           type="text"
@@ -65,6 +82,7 @@ export default function CreateAccount() {
           placeholder="Jane"
           id="firstName"
           name="firstName"
+          required
           onChange={(e) => {
             setFirstName(e.target.value);
           }}
@@ -75,6 +93,7 @@ export default function CreateAccount() {
           value={lastName}
           placeholder="Doe"
           id="lastName"
+          required
           name="lastName"
           onChange={(e) => {
             setLastName(e.target.value);
@@ -85,6 +104,7 @@ export default function CreateAccount() {
           type="text"
           value={email}
           id="email"
+          required
           placeholder="jane.doe@gmail.com"
           name="email"
           onChange={(e) => {
@@ -98,11 +118,11 @@ export default function CreateAccount() {
           value={age}
           id="age"
           name="age"
+          required
           onChange={(e) => {
             setAge(e.target.value);
           }}
         ></input>
-
         <button type="submit">Submit</button>
       </form>
     </>
