@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Home({ authenticated }) {
+  console.log(authenticated);
   return (
     <>
       <h1>Welcome Back {authenticated.user}!</h1>

@@ -28,8 +28,6 @@ export default function Login({ setAuthenticated }) {
     setUsers(usersData);
   }
 
-  console.log(users);
-
   useEffect(() => {
     fetchUsers();
   }, []);

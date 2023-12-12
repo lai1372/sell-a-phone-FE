@@ -5,18 +5,22 @@ import AddMobile from "./components/AddMobile";
 import UpdateMobile from "./components/UpdateMobile";
 import SingleMobile from "./components/SingleMobile";
 import NotFound from "./components/NotFound";
+import ProtectedRoute from "./components/NavGuard";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Logout from "./components/LogOut";
 import CreateAccount from "./components/CreateAccount";
 import logo from "./assets/logo.png";
-import { Route, Routes, NavLink } from "react-router-dom";
+import { Route, Routes, NavLink, redirect } from "react-router-dom";
 
 function App() {
   const [authenticated, setAuthenticated] = useState({
     user: "",
     isAuthenticated: false,
   });
+
+  console.log(authenticated);
+
   return (
     <>
       <nav>
@@ -24,37 +28,18 @@ function App() {
 
         <ul>
           <li>
-            <NavLink to={authenticated.isAuthenticated ? "/" : "/login"}>
-              Home
-            </NavLink>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <NavLink
-              end
-              to={authenticated.isAuthenticated ? "/mobiles" : "/login"}
-            >
+            <NavLink end to="/mobiles">
               All Mobiles
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to={
-                authenticated.isAuthenticated ? "/mobiles/add-mobile" : "/login"
-              }
-            >
-              Add a Mobile
-            </NavLink>
+            <NavLink to="/mobiles/add-mobile">Add a Mobile</NavLink>
           </li>
           <li>
-            <NavLink
-              to={
-                authenticated.isAuthenticated
-                  ? "/mobiles/update-mobile"
-                  : "/login"
-              }
-            >
-              Update a Mobile
-            </NavLink>
+            <NavLink to="/mobiles/update-mobile">Update a Mobile</NavLink>
           </li>
           <li>
             <NavLink to="/create-account">Create an account</NavLink>
@@ -67,7 +52,16 @@ function App() {
         </ul>
       </nav>
       <Routes>
-        <Route path="/" element={<Home authenticated={authenticated} />} />
+        <Route element={<ProtectedRoute authenticated={authenticated} />}>
+          <Route path="/" element={<Home authenticated={authenticated} />} />
+          <Route path="/mobiles">
+            <Route index element={<AllMobiles />} />
+            <Route path=":id" element={<SingleMobile />} />
+            <Route path="add-mobile" element={<AddMobile />} />
+            <Route path="update-mobile" element={<UpdateMobile />} />
+          </Route>
+        </Route>
+
         <Route path="/create-account" element={<CreateAccount />} />
         <Route
           path="/login"
@@ -77,12 +71,7 @@ function App() {
           path="/logout"
           element={<Logout setAuthenticated={setAuthenticated} />}
         />
-        <Route path="/mobiles">
-          <Route index element={<AllMobiles />} />
-          <Route path=":id" element={<SingleMobile />} />
-          <Route path="add-mobile" element={<AddMobile />} />
-          <Route path="update-mobile" element={<UpdateMobile />} />
-        </Route>
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
