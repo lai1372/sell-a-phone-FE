@@ -13,7 +13,10 @@ import logo from "./assets/logo.png";
 import { Route, Routes, NavLink } from "react-router-dom";
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState({
+    user: "",
+    isAuthenticated: false,
+  });
   return (
     <>
       <nav>
@@ -21,27 +24,42 @@ function App() {
 
         <ul>
           <li>
-            <NavLink to={authenticated ? "/" : "/login"}>Home</NavLink>
+            <NavLink to={authenticated.isAuthenticated ? "/" : "/login"}>
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink end to={authenticated ? "/mobiles" : "/login"}>
+            <NavLink
+              end
+              to={authenticated.isAuthenticated ? "/mobiles" : "/login"}
+            >
               All Mobiles
             </NavLink>
           </li>
           <li>
-            <NavLink to={authenticated ? "/mobiles/add-mobile" : "/login"}>
+            <NavLink
+              to={
+                authenticated.isAuthenticated ? "/mobiles/add-mobile" : "/login"
+              }
+            >
               Add a Mobile
             </NavLink>
           </li>
           <li>
-            <NavLink to={authenticated ? "/mobiles/update-mobile" : "/login"}>
+            <NavLink
+              to={
+                authenticated.isAuthenticated
+                  ? "/mobiles/update-mobile"
+                  : "/login"
+              }
+            >
               Update a Mobile
             </NavLink>
           </li>
           <li>
             <NavLink to="/create-account">Create an account</NavLink>
           </li>
-          {authenticated ? (
+          {authenticated.isAuthenticated ? (
             <NavLink to="/logout">Logout</NavLink>
           ) : (
             <NavLink to="/login">Login</NavLink>
@@ -49,7 +67,7 @@ function App() {
         </ul>
       </nav>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home authenticated={authenticated} />} />
         <Route path="/create-account" element={<CreateAccount />} />
         <Route
           path="/login"
