@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login({ setAuthenticated}) {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
-  const [authenticated, setauthenticated] = useState(false);
   const [loginError, setLoginError] = useState(false);
   const [users, setUsers] = useState([]);
 
@@ -14,9 +13,10 @@ export default function Login() {
     e.preventDefault();
     const account = users.find((user) => user.username === username);
     if (account && account.password === password) {
-      setauthenticated(true);
+      setAuthenticated(true);
       navigate("/");
     } else {
+        setAuthenticated(false)
       setLoginError(true);
     }
   };
