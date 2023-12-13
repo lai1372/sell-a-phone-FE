@@ -8,6 +8,7 @@ export default function AllMobiles() {
   const [filteredResults, setFilteredResults] = useState(mobiles);
   const [searchInput, setSearchInput] = useState("");
   const [brand, setBrand] = useState("");
+  const [price, setPrice] = useState(false);
   const navigate = useNavigate();
 
   function handleBrand(e) {
@@ -16,7 +17,31 @@ export default function AllMobiles() {
     const brandResults = mobiles.filter((mobile) =>
       mobile.brand.toLowerCase().includes(e.target.value.toLowerCase())
     );
+    setPrice(false);
     setFilteredResults(brandResults);
+  }
+
+  function handlePrice(e) {
+    if (e.target.value === "High to Low") {
+      setBrand(e.target.value);
+      const priceResults = mobiles.sort(
+        (mobilea, mobileb) => mobileb.price - mobilea.price
+      );
+      setPrice(true);
+      setFilteredResults(priceResults);
+      setBrand("");
+    } else if (e.target.value === "Low to High") {
+      console.log("in low to high");
+      setBrand(e.target.value);
+      const priceResults = mobiles.sort(
+        (mobilea, mobileb) => mobilea.price - mobileb.price
+      );
+      setPrice(true);
+      setFilteredResults(priceResults);
+      setBrand("");
+    } else {
+      setPrice(false);
+    }
   }
 
   async function fetchMobiles() {
@@ -44,17 +69,22 @@ export default function AllMobiles() {
 
   useEffect(() => {
     fetchMobiles();
-  }, []);
+  }, [filteredResults]);
 
   return (
     <>
       <select onChange={handleBrand}>
-        <option>Sort by brand</option>
+        <option>Filter by brand</option>
         {mobiles.map((mobile, idx) => (
           <option key={idx} value={mobile.brand}>
             {mobile.brand}
           </option>
         ))}
+      </select>
+      <select onChange={handlePrice}>
+        <option>Filter by Price</option>
+        <option>High to Low</option>
+        <option>Low to High</option>
       </select>
       <input
         type="text"
@@ -62,7 +92,7 @@ export default function AllMobiles() {
         onChange={handleChange}
         value={searchInput}
       />
-      {searchInput.length === 0 && !brand ? (
+      {searchInput.length === 0 && !brand && !price ? (
         <div>
           <div>
             {mobiles.map((mobile, idx) => (
