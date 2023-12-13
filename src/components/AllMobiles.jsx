@@ -37,6 +37,12 @@ export default function AllMobiles() {
   }, []);
   return (
     <>
+      <select>
+        <option>Sort by brand</option>
+        {mobiles.map((mobile) => (
+          <option value={mobile.brand}>{mobile.brand}</option>
+        ))}
+      </select>
       <input
         type="text"
         placeholder="Search for a mobile name or brand"
