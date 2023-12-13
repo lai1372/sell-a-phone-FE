@@ -7,7 +7,17 @@ export default function AllMobiles() {
   const [mobiles, setMobiles] = useState([]);
   const [filteredResults, setFilteredResults] = useState(mobiles);
   const [searchInput, setSearchInput] = useState("");
+  const [brand, setBrand] = useState("");
   const navigate = useNavigate();
+
+  function handleBrand(e) {
+    console.log(e.target.value);
+    setBrand(e.target.value);
+    const brandResults = mobiles.filter((mobile) =>
+      mobile.brand.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setFilteredResults(brandResults);
+  }
 
   async function fetchMobiles() {
     try {
@@ -35,12 +45,15 @@ export default function AllMobiles() {
   useEffect(() => {
     fetchMobiles();
   }, []);
+
   return (
     <>
-      <select>
+      <select onChange={handleBrand}>
         <option>Sort by brand</option>
-        {mobiles.map((mobile) => (
-          <option value={mobile.brand}>{mobile.brand}</option>
+        {mobiles.map((mobile, idx) => (
+          <option key={idx} value={mobile.brand}>
+            {mobile.brand}
+          </option>
         ))}
       </select>
       <input
@@ -49,7 +62,7 @@ export default function AllMobiles() {
         onChange={handleChange}
         value={searchInput}
       />
-      {searchInput.length === 0 ? (
+      {searchInput.length === 0 && !brand ? (
         <div>
           <div>
             {mobiles.map((mobile, idx) => (
