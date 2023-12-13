@@ -45,6 +45,7 @@ export default function AddMobile() {
           placeholder="e.g. iPhone 15"
           value={name}
           id="mobName"
+          required
           name="mobName"
           onChange={(e) => {
             setName(e.target.value);
@@ -56,6 +57,7 @@ export default function AddMobile() {
           type="text"
           value={manufacturer}
           placeholder="e.g. Apple"
+          required
           id="manufacturer"
           onChange={(e) => {
             setManufacturer(e.target.value);
@@ -68,6 +70,7 @@ export default function AddMobile() {
           type="text"
           placeholder=""
           id="details"
+          required
           value={details}
           onChange={(e) => {
             setDetails(e.target.value);
@@ -80,6 +83,7 @@ export default function AddMobile() {
           type="text"
           placeholder=""
           id="image"
+          required
           value={image}
           onChange={(e) => {
             setImage(e.target.value);
@@ -93,6 +97,7 @@ export default function AddMobile() {
           title="Please enter a valid number"
           min={0}
           value={memory}
+          required
           onChange={(e) => {
             setMemory(e.target.value);
           }}
@@ -105,6 +110,7 @@ export default function AddMobile() {
         <input
           type="number"
           min={0}
+          required
           onChange={(e) => {
             setPrice(e.target.value);
           }}
@@ -118,6 +124,7 @@ export default function AddMobile() {
         <input
           type="text"
           value={colours}
+          required
           placeholder="e.g. Yellow, Green, Red"
           id="colours"
           onChange={(e) => {
