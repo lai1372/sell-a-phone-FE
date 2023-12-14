@@ -2,7 +2,6 @@ export default function Footer() {
   return (
     <footer>
       <div className="footer-content">
-        <p>&copy; 2023 YourWebsiteName. All Rights Reserved.</p>
         <ul class="footer-links">
           <li>
             <a href="#">About Us</a>
@@ -14,6 +13,7 @@ export default function Footer() {
             <a href="#">Contact Us</a>
           </li>
         </ul>
+        <p>&copy; 2023 Sell-a-Phone. All Rights Reserved.</p>
       </div>
     </footer>
   );
