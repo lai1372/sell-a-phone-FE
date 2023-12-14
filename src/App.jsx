@@ -11,7 +11,14 @@ import Login from "./components/Login";
 import Logout from "./components/LogOut";
 import CreateAccount from "./components/CreateAccount";
 import logo from "./assets/logo.png";
-import { Route, Routes, NavLink, redirect, useNavigate } from "react-router-dom";
+import {
+  Route,
+  Routes,
+  NavLink,
+  redirect,
+  useNavigate,
+} from "react-router-dom";
+import Footer from "./components/Footer";
 
 function App() {
   const [authenticated, setAuthenticated] = useState({
@@ -19,14 +26,14 @@ function App() {
     isAuthenticated: false,
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   function handleLogout() {
     setAuthenticated({
       user: "",
       isAuthenticated: false,
     });
-    navigate('/logout')
+    navigate("/logout");
   }
   return (
     <>
@@ -83,6 +90,7 @@ function App() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </>
   );
 }

@@ -18,11 +18,16 @@ ul {
 
 a {
   font-weight: 500;
-  color: #c5c8fe;
+  color: #8a8ee7;
   text-decoration: inherit;
 }
 a:hover {
-  color: #01010e;
+  color: #6c6cbe;
+}
+
+.footer-content{
+  background-color: #4a4d4c;
+  width: 100%;
 }
 
 body {
@@ -74,7 +79,7 @@ button:focus-visible {
 
 .active {
   background-color: rgb(236, 171, 171);
-  color: white;
+  color: rgb(79, 75, 207);
   padding: 5px;
   border-radius: 10px;
 }
